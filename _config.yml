@@ -28,6 +28,9 @@ show_excerpts: true
 timezone: Asia/Shanghai
 
 # ===== 排除不参与构建的文件 =====
+# 注意：assets/ 下的 .md 会被 GitHub Pages 当成页面渲染，
+# 还会出现在顶部导航里（minima 会列出所有 page），所以一并排除
 exclude:
   - README.md
   - .gitignore
+  - "assets/images/posts/info-gap/README.md"
