@@ -1,0 +1,9 @@
+# 统一换行符，避免 Windows 下 CRLF 造成的无意义 diff
+* text=auto eol=lf
+
+# 图片按二进制处理
+*.jpg binary
+*.jpeg binary
+*.png binary
+*.gif binary
+*.webp binary

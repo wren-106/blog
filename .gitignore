@@ -1,0 +1,20 @@
+# Jekyll 构建产物
+_site/
+.jekyll-cache/
+.jekyll-metadata
+
+# Ruby（若以后本地构建）
+.sass-cache/
+vendor/
+Gemfile.lock
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器
+.vscode/
+.idea/
+
+# 本地部署脚本（含本机路径，不发布）
+deploy.bat

@@ -1,0 +1,33 @@
+# ===== 站点基本信息 =====
+title: 你的博客名
+description: 一份关于信息、机制与钱的观察笔记
+author: 你的名字
+
+# ===== 关键：子仓库必须配 baseurl =====
+# 仓库名是 blog，所以 baseurl 设为 /blog
+# 站点最终地址：https://wren-106.github.io/blog/
+url: "https://wren-106.github.io"
+baseurl: "/blog"
+
+# ===== 主题 =====
+theme: minima
+
+# ===== 插件（都在 GitHub Pages 白名单内）=====
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# ===== 构建 =====
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+
+# 文章首页显示摘要
+show_excerpts: true
+
+# 时区
+timezone: Asia/Shanghai
+
+# ===== 排除不参与构建的文件 =====
+exclude:
+  - README.md
+  - .gitignore
