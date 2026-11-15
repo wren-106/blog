@@ -15,4 +15,5 @@ Thumbs.db
 _site/
 deploy.bat
 deploy.log
+push.bat
 vendor/
