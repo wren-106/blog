@@ -16,4 +16,5 @@ _site/
 deploy.bat
 deploy.log
 push.bat
+reset-token.bat
 vendor/
