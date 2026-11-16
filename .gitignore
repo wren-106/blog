@@ -12,9 +12,11 @@
 .vscode/
 Gemfile.lock
 Thumbs.db
+_docs/
 _site/
 deploy.bat
 deploy.log
+publish.bat
 push.bat
 reset-token.bat
 vendor/
