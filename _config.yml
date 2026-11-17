@@ -12,6 +12,10 @@ baseurl: "/blog"
 # ===== 主题 =====
 theme: minima
 
+# 主题细节
+minima:
+  date_format: "%Y 年 %m 月 %d 日"
+
 # ===== 插件（都在 GitHub Pages 白名单内）=====
 plugins:
   - jekyll-feed
