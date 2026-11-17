@@ -4,16 +4,26 @@
 
 /* ============================================================
    观察笔记 · 自定义排版
-   只做覆盖，不改主题结构。改动集中四块：页头、文章头、正文、页脚。
+   配色：墨蓝 + 纸白；标题用楷体，正文用系统无衬线。
    ============================================================ */
+
+$ink:        #101a2b;
+$blue:       #1f4e8c;
+$blue-deep:  #12365f;
+$blue-soft:  #eef4fb;
+$line:       #e6ecf3;
+$muted:      #8492a6;
+
+$kai:  "KaiTi", "STKaiti", "Kaiti SC", "楷体", "BiauKai", serif;
+$sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+       "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC",
+       "Noto Sans CJK SC", sans-serif;
 
 /* ---------- 基础 ---------- */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
-               "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC",
-               "Noto Sans CJK SC", sans-serif;
+  font-family: $sans;
   -webkit-font-smoothing: antialiased;
-  color: #24292f;
+  color: $ink;
   background: #fff;
 }
 
@@ -23,49 +33,61 @@ body {
 
 /* ---------- 页头 ---------- */
 .site-header {
-  border-top: 3px solid #24292f;
-  border-bottom: 1px solid #ececec;
+  border-top: 3px solid $blue;
+  border-bottom: 1px solid $line;
+  background: #fff;
 }
 
 .site-title {
   letter-spacing: .06em;
   font-weight: 600;
+  color: $ink;
+}
+
+.site-title:visited {
+  color: $ink;
+}
+
+.site-title:hover {
+  color: $blue;
+  text-decoration: none;
 }
 
 .site-nav .page-link {
   letter-spacing: .04em;
+  color: #5d6b7d;
+  transition: color .25s ease, border-color .25s ease;
 }
 
-/* ---------- 文章头 ---------- */
+.site-nav .page-link:hover {
+  color: $blue;
+  text-decoration: none;
+}
+
+/* ---------- 文章页：页头 ---------- */
 .post-header {
   margin-bottom: 2.4rem;
   padding-bottom: 1.3rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid $line;
 }
 
 .post-title {
-  font-size: 1.95rem;
-  line-height: 1.4;
-  font-weight: 600;
-  letter-spacing: -.01em;
+  font-family: $kai;
+  font-size: 2.05rem;
+  font-weight: 400;
+  line-height: 1.45;
+  letter-spacing: .01em;
+  color: $ink;
   margin: .2rem 0 .8rem;
 }
 
 .post-meta {
-  color: #9a9a9a;
+  color: $muted;
   font-size: .82rem;
   letter-spacing: .06em;
 }
 
-/* ---------- 列表页 / 关于页的页标题 ---------- */
-.page-heading {
-  font-size: 1.55rem;
-  font-weight: 600;
-  letter-spacing: .01em;
-  margin-bottom: .4rem;
-}
-
-/* ---------- 正文 ---------- */
+/* ---------- 文章页：正文 ---------- */
 .post-content {
   font-size: 17px;
   line-height: 1.92;
@@ -77,28 +99,29 @@ body {
   text-align: justify;
 }
 
-/* 导言两段：略大、略深，和正文拉开层次 */
+/* 导言两段：略大、略深 */
 .post-content > p:nth-of-type(-n+2) {
   font-size: 1.045em;
-  color: #3d434b;
+  color: #34404f;
 }
 
 .post-content strong {
   font-weight: 600;
-  color: #111;
+  color: #000;
 }
 
 .post-content a {
-  color: #1a5fb4;
+  color: $blue;
   text-decoration: none;
-  border-bottom: 1px solid rgba(26, 95, 180, .25);
+  border-bottom: 1px solid rgba(31, 78, 140, .25);
+  transition: border-color .2s ease;
 }
 
 .post-content a:hover {
-  border-bottom-color: #1a5fb4;
+  border-bottom-color: $blue;
 }
 
-/* 小标题：左侧一道细线，靠上留白分段 */
+/* 小标题：左侧细线 */
 .post-content h2 {
   position: relative;
   font-size: 1.24rem;
@@ -117,7 +140,7 @@ body {
   bottom: .28em;
   width: 3px;
   border-radius: 2px;
-  background: #d8d8d8;
+  background: #cddff2;
 }
 
 .post-content h2 + p {
@@ -136,17 +159,17 @@ body {
 .post-content blockquote {
   margin: 1.8em 0;
   padding: .1em 0 .1em 1.1em;
-  border-left: 3px solid #e2e2e2;
-  color: #555;
+  border-left: 3px solid $line;
+  color: #4d5a6b;
   font-size: .97em;
 }
 
-/* 图片：满栏、圆角、轻投影；图注可选用 <figure> 包 */
+/* 图片 */
 .post-content img {
   display: block;
   width: 100%;
   border-radius: 6px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, .09);
+  box-shadow: 0 4px 24px rgba(16, 26, 43, .09);
 }
 
 .post-content p > img {
@@ -163,7 +186,7 @@ body {
 
 .post-content figcaption {
   margin-top: .75em;
-  color: #9a9a9a;
+  color: $muted;
   font-size: .82rem;
   line-height: 1.7;
   letter-spacing: .02em;
@@ -172,16 +195,184 @@ body {
 
 .post-content hr {
   border: none;
-  border-top: 1px solid #ececec;
+  border-top: 1px solid $line;
   margin: 2.6em auto;
   width: 36%;
 }
 
-/* ---------- 页脚：一行署名，不再重复站点副题 ---------- */
+/* ---------- 目录页 ---------- */
+.home-hero {
+  position: relative;
+  padding: 1rem 0 2rem;
+  border-bottom: 1px solid $line;
+  animation: rise .6s cubic-bezier(.22, .61, .36, 1) both;
+}
+
+.home-eyebrow {
+  font-size: .74rem;
+  letter-spacing: .32em;
+  color: $blue;
+  margin: 0 0 1rem;
+}
+
+.home-title {
+  font-family: $kai;
+  font-size: 2.35rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: .04em;
+  color: $ink;
+  margin: 0;
+}
+
+.home-meta {
+  margin: .85rem 0 0;
+  font-size: .82rem;
+  letter-spacing: .06em;
+  color: $muted;
+}
+
+.catalog {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.catalog-item {
+  border-bottom: 1px solid $line;
+  animation: rise .55s cubic-bezier(.22, .61, .36, 1) both;
+  animation-delay: calc(var(--i, 0) * 90ms + 80ms);
+}
+
+.catalog-link {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.3rem;
+  padding: 1.85rem 1.2rem 1.85rem .9rem;
+  text-decoration: none;
+  transition: background-color .3s ease, padding-left .35s cubic-bezier(.22, .61, .36, 1);
+}
+
+/* 悬停时左侧浮起一道竖线 */
+.catalog-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 2px;
+  height: 0;
+  background: $blue;
+  border-radius: 1px;
+  transform: translateY(-50%);
+  transition: height .38s cubic-bezier(.22, .61, .36, 1);
+}
+
+.catalog-link:hover {
+  background-color: $blue-soft;
+  padding-left: 1.25rem;
+}
+
+.catalog-link:hover::before {
+  height: 58%;
+}
+
+.catalog-link:focus-visible {
+  outline: 2px solid $blue;
+  outline-offset: -2px;
+}
+
+.catalog-index {
+  flex: 0 0 2rem;
+  padding-top: .45rem;
+  font-size: .78rem;
+  letter-spacing: .12em;
+  color: #b7c5d6;
+  font-variant-numeric: tabular-nums;
+  transition: color .3s ease;
+}
+
+.catalog-link:hover .catalog-index {
+  color: $blue;
+}
+
+.catalog-body {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.catalog-date {
+  display: block;
+  font-size: .76rem;
+  letter-spacing: .1em;
+  color: $muted;
+}
+
+.catalog-title {
+  font-family: $kai;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: .01em;
+  color: $ink;
+  margin: .4rem 0 0;
+  transition: color .3s ease, transform .35s cubic-bezier(.22, .61, .36, 1);
+}
+
+.catalog-link:hover .catalog-title {
+  color: $blue-deep;
+  transform: translateX(3px);
+}
+
+.catalog-desc {
+  margin: .55rem 0 0;
+  font-size: .93rem;
+  line-height: 1.8;
+  color: #5d6b7d;
+}
+
+.catalog-tags {
+  margin: .85rem 0 0;
+}
+
+.catalog-tag {
+  display: inline-block;
+  font-size: .72rem;
+  letter-spacing: .06em;
+  color: #6c7c90;
+  border: 1px solid $line;
+  border-radius: 2px;
+  padding: .12rem .45rem;
+  margin: 0 .4rem .35rem 0;
+  transition: color .25s ease, border-color .25s ease, background-color .25s ease;
+}
+
+.catalog-link:hover .catalog-tag {
+  color: $blue;
+  border-color: rgba(31, 78, 140, .28);
+  background: #fff;
+}
+
+.catalog-arrow {
+  flex: 0 0 auto;
+  align-self: center;
+  font-size: 1rem;
+  color: $blue;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity .3s ease, transform .35s cubic-bezier(.22, .61, .36, 1);
+}
+
+.catalog-link:hover .catalog-arrow {
+  opacity: .85;
+  transform: translateX(0);
+}
+
+/* ---------- 页脚 ---------- */
 .site-footer {
-  border-top: 1px solid #ececec;
+  border-top: 1px solid $line;
   padding: 1.8rem 0 2.2rem;
-  color: #9a9a9a;
+  color: $muted;
   font-size: .82rem;
   letter-spacing: .04em;
 }
@@ -192,13 +383,55 @@ body {
 
 .site-footer .footer-sep {
   margin: 0 .5em;
-  color: #d0d0d0;
+  color: #ccd6e2;
+}
+
+/* ---------- 动效 ---------- */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ---------- 窄屏 ---------- */
 @media (max-width: 600px) {
+  .home-title {
+    font-size: 1.95rem;
+  }
+
+  .catalog-link {
+    gap: .8rem;
+    padding: 1.5rem .8rem 1.5rem .6rem;
+  }
+
+  .catalog-link:hover {
+    padding-left: .95rem;
+  }
+
+  .catalog-index {
+    flex-basis: 1.6rem;
+    font-size: .72rem;
+  }
+
+  .catalog-title {
+    font-size: 1.28rem;
+  }
+
+  .catalog-desc {
+    font-size: .88rem;
+  }
+
+  .catalog-arrow {
+    display: none;
+  }
+
   .post-title {
-    font-size: 1.55rem;
+    font-size: 1.62rem;
   }
 
   .post-content {
@@ -218,8 +451,21 @@ body {
   .post-content figure {
     margin: 1.8em 0;
   }
+}
 
-  .post-content figure img {
-    border-radius: 4px;
+/* ---------- 尊重「减少动态效果」 ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .home-hero,
+  .catalog-item {
+    animation: none;
+  }
+
+  .catalog-link,
+  .catalog-link::before,
+  .catalog-title,
+  .catalog-index,
+  .catalog-tag,
+  .catalog-arrow {
+    transition: none;
   }
 }
