@@ -1,0 +1,217 @@
+---
+---
+@import "minima";
+
+/* ============================================================
+   观察笔记 · 自定义排版
+   只做覆盖，不改主题结构。改动集中四块：页头、文章头、正文、页脚。
+   ============================================================ */
+
+/* ---------- 基础 ---------- */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+               "Hiragino Sans GB", "Microsoft YaHei", "Source Han Sans SC",
+               "Noto Sans CJK SC", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #24292f;
+  background: #fff;
+}
+
+.wrapper {
+  max-width: 780px;
+}
+
+/* ---------- 页头 ---------- */
+.site-header {
+  border-top: 3px solid #24292f;
+  border-bottom: 1px solid #ececec;
+}
+
+.site-title {
+  letter-spacing: .06em;
+  font-weight: 600;
+}
+
+.site-nav .page-link {
+  letter-spacing: .04em;
+}
+
+/* ---------- 文章头 ---------- */
+.post-header {
+  margin-bottom: 2.4rem;
+  padding-bottom: 1.3rem;
+  border-bottom: 1px solid #eee;
+}
+
+.post-title {
+  font-size: 1.95rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: -.01em;
+  margin: .2rem 0 .8rem;
+}
+
+.post-meta {
+  color: #9a9a9a;
+  font-size: .82rem;
+  letter-spacing: .06em;
+}
+
+/* ---------- 正文 ---------- */
+.post-content {
+  font-size: 17px;
+  line-height: 1.92;
+  letter-spacing: .012em;
+}
+
+.post-content > p {
+  margin: 0 0 1.45em;
+  text-align: justify;
+}
+
+/* 导言两段：略大、略深，和正文拉开层次 */
+.post-content > p:nth-of-type(-n+2) {
+  font-size: 1.045em;
+  color: #3d434b;
+}
+
+.post-content strong {
+  font-weight: 600;
+  color: #111;
+}
+
+.post-content a {
+  color: #1a5fb4;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(26, 95, 180, .25);
+}
+
+.post-content a:hover {
+  border-bottom-color: #1a5fb4;
+}
+
+/* 小标题：左侧一道细线，靠上留白分段 */
+.post-content h2 {
+  position: relative;
+  font-size: 1.24rem;
+  font-weight: 600;
+  line-height: 1.55;
+  letter-spacing: .01em;
+  margin: 2.7rem 0 1.05rem;
+  padding-left: .75rem;
+}
+
+.post-content h2::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: .42em;
+  bottom: .28em;
+  width: 3px;
+  border-radius: 2px;
+  background: #d8d8d8;
+}
+
+.post-content h2 + p {
+  margin-top: 0;
+}
+
+.post-content ul,
+.post-content ol {
+  margin: 0 0 1.45em 1.3em;
+}
+
+.post-content li {
+  margin-bottom: .5em;
+}
+
+.post-content blockquote {
+  margin: 1.8em 0;
+  padding: .1em 0 .1em 1.1em;
+  border-left: 3px solid #e2e2e2;
+  color: #555;
+  font-size: .97em;
+}
+
+/* 图片：满栏、圆角、轻投影；图注可选用 <figure> 包 */
+.post-content img {
+  display: block;
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, .09);
+}
+
+.post-content p > img {
+  margin: 1.7em 0;
+}
+
+.post-content figure {
+  margin: 2.2em 0;
+}
+
+.post-content figure img {
+  margin: 0;
+}
+
+.post-content figcaption {
+  margin-top: .75em;
+  color: #9a9a9a;
+  font-size: .82rem;
+  line-height: 1.7;
+  letter-spacing: .02em;
+  text-align: center;
+}
+
+.post-content hr {
+  border: none;
+  border-top: 1px solid #ececec;
+  margin: 2.6em auto;
+  width: 36%;
+}
+
+/* ---------- 页脚：一行署名，不再重复站点副题 ---------- */
+.site-footer {
+  border-top: 1px solid #ececec;
+  padding: 1.8rem 0 2.2rem;
+  color: #9a9a9a;
+  font-size: .82rem;
+  letter-spacing: .04em;
+}
+
+.site-footer .footer-line {
+  margin: 0;
+}
+
+.site-footer .footer-sep {
+  margin: 0 .5em;
+  color: #d0d0d0;
+}
+
+/* ---------- 窄屏 ---------- */
+@media (max-width: 600px) {
+  .post-title {
+    font-size: 1.55rem;
+  }
+
+  .post-content {
+    font-size: 16.5px;
+    line-height: 1.85;
+  }
+
+  .post-content h2 {
+    font-size: 1.15rem;
+    margin-top: 2.2rem;
+  }
+
+  .post-content > p {
+    text-align: left;
+  }
+
+  .post-content figure {
+    margin: 1.8em 0;
+  }
+
+  .post-content figure img {
+    border-radius: 4px;
+  }
+}
