@@ -271,6 +271,7 @@ body {
 .catalog-link:hover {
   background-color: $blue-soft;
   padding-left: 1.25rem;
+  text-decoration: none;
 }
 
 .catalog-link:hover::before {
@@ -287,7 +288,7 @@ body {
   padding-top: .45rem;
   font-size: .78rem;
   letter-spacing: .12em;
-  color: #b7c5d6;
+  color: #aec1d6;
   font-variant-numeric: tabular-nums;
   transition: color .3s ease;
 }
