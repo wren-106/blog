@@ -1,0 +1,37 @@
+---
+layout: default
+title: 全部文章
+---
+
+<style>
+  .toc-meta { color: #828282; font-size: .85rem; }
+  .toc-item { margin: 0 0 2.2rem; padding-bottom: 1.6rem; border-bottom: 1px solid #f0f0f0; }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-item h3 { margin: .35rem 0 .5rem; font-size: 1.35rem; line-height: 1.45; }
+  .toc-item h3 a { text-decoration: none; color: #2a2a2a; }
+  .toc-item h3 a:hover { text-decoration: underline; }
+  .toc-desc { color: #5b5b5b; font-size: .95rem; line-height: 1.75; margin: .3rem 0 .7rem; }
+  .toc-tags { margin: 0; }
+  .toc-tag { display: inline-block; font-size: .75rem; color: #828282; border: 1px solid #e8e8e8;
+             border-radius: 3px; padding: 0 .4rem; margin: 0 .35rem .3rem 0; }
+</style>
+
+<div class="home">
+  <h1 class="page-heading">全部文章</h1>
+  <p class="toc-meta">共 {{ site.posts | size }} 篇 · 按时间倒序</p>
+
+  {% for post in site.posts %}
+  <div class="toc-item">
+    <span class="toc-meta">{{ post.date | date: "%Y 年 %m 月 %d 日" }}</span>
+    <h3><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h3>
+    {% if post.description %}
+    <p class="toc-desc">{{ post.description }}</p>
+    {% endif %}
+    {% if post.tags.size > 0 %}
+    <p class="toc-tags">
+      {% for tag in post.tags %}<span class="toc-tag">{{ tag }}</span>{% endfor %}
+    </p>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
