@@ -13,10 +13,12 @@
 Gemfile.lock
 Thumbs.db
 _docs/
+_push_tmp.py
 _site/
 deploy.bat
 deploy.log
 publish.bat
 push.bat
 reset-token.bat
+tmp_*.py
 vendor/
