@@ -64,17 +64,16 @@ layout: default
         <span class="card-no">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
         <h2 class="card-name">{{ s.name }}</h2>
         <p class="card-latin">{{ s.latin }}</p>
-        <p class="card-desc">{{ s.desc }}</p>
         <p class="card-foot">
           {% if items.size > 0 %}
           <span class="card-count">{{ items | size }} 篇</span>
-          <span class="card-latest">最新 · {{ items.first.title }}</span>
+          <span class="card-latest">{{ items.first.title }}</span>
           {% else %}
           <span class="card-count is-empty">空着</span>
           <span class="card-latest">等你写第一篇</span>
           {% endif %}
+          <span class="card-arrow" aria-hidden="true">→</span>
         </p>
-        <span class="card-arrow" aria-hidden="true">→</span>
       </a>
       {% endfor %}
     </div>

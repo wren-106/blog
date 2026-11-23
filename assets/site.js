@@ -22,6 +22,59 @@
   /* ---------- 页头吸顶 ---------- */
   var head = document.getElementById('masthead');
 
+  /* ---------- 导航墨线：跟着指针滑，走了回原位 ---------- */
+  var nav = document.getElementById('nav');
+  var ink = document.getElementById('navInk');
+
+  if (nav && ink) {
+    var navLinks = [].slice.call(nav.querySelectorAll('.nav-link'));
+    var navActive = nav.querySelector('.nav-link.is-active');
+    var inkTimer = null;
+
+    function inkTo(link) {
+      if (!link) {
+        ink.style.opacity = '0';
+        return;
+      }
+      var r = link.getBoundingClientRect();
+      var n = nav.getBoundingClientRect();
+      if (!r.width) return;
+      ink.style.opacity = '1';
+      ink.style.width = r.width + 'px';
+      ink.style.transform = 'translateX(' + (r.left - n.left) + 'px)';
+      var tint = getComputedStyle(link).getPropertyValue('--tint').trim();
+      ink.style.backgroundColor = tint || '';
+    }
+
+    navLinks.forEach(function (link) {
+      link.addEventListener('mouseenter', function () { inkTo(link); });
+      link.addEventListener('focus', function () { inkTo(link); });
+    });
+
+    // 指针离开导航：等一小会儿再回到当前栏目
+    nav.addEventListener('mouseleave', function () {
+      inkTimer = setTimeout(function () { inkTo(navActive); }, 140);
+    });
+    nav.addEventListener('mouseenter', function () {
+      clearTimeout(inkTimer);
+    });
+
+    // 悬停时那一下轻微的下压感
+    navLinks.forEach(function (link) {
+      link.addEventListener('pointerdown', function () { link.classList.add('is-press'); });
+      link.addEventListener('pointerup', function () { link.classList.remove('is-press'); });
+      link.addEventListener('pointerleave', function () { link.classList.remove('is-press'); });
+    });
+
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(function () { setTimeout(function () { inkTo(navActive); }, 60); });
+    } else {
+      setTimeout(function () { inkTo(navActive); }, 200);
+    }
+
+    window.addEventListener('resize', function () { inkTo(navActive); });
+  }
+
   /* ---------- 阅读进度 ---------- */
   var bar = document.getElementById('progress');
 
