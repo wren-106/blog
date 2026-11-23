@@ -8,13 +8,41 @@ layout: default
       <p class="kicker">Personal Notes · Est. 2026</p>
       <h1 class="hero-title">{{ site.title }}</h1>
       <p class="hero-lead">{{ site.description }}。这里分四类存放：正在发生的事、读过的书、想清楚的判断，以及还没想清楚的问题。</p>
+      <p class="hero-note"><span class="hl">写得慢一点，想得清楚一点。</span></p>
       <div class="hero-meta">
         <span>{{ site.posts | size }} 篇</span><span class="dot"></span>
         <span>{{ site.sections | size }} 个栏目</span><span class="dot"></span>
         <span>更新至 {{ site.time | date: "%Y.%m.%d" }}</span>
       </div>
+
+      <div class="hero-actions">
+        <button class="btn-shuffle" id="shuffleBtn" type="button">
+          <span class="btn-label">随便翻一页</span>
+          <span class="btn-glyph" aria-hidden="true">⇄</span>
+        </button>
+        <a class="btn-ghost" href="{{ '/about/' | relative_url }}">关于这个站 →</a>
+      </div>
     </div>
-    <div class="hero-mark" aria-hidden="true">觀</div>
+
+    <span class="hero-side" aria-hidden="true">二〇二六 · 冬 · 第一卷</span>
+
+    <button class="stamp" id="sealBtn" type="button" aria-label="盖一个章">
+      <svg viewBox="0 0 132 132" aria-hidden="true">
+        <circle cx="66" cy="66" r="61" fill="none" stroke="currentColor" stroke-width="2.4"/>
+        <circle cx="66" cy="66" r="53" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 5"/>
+        <defs>
+          <path id="sealArc" d="M 26 66 A 40 40 0 0 1 106 66"/>
+        </defs>
+        <text font-size="13" letter-spacing="7">
+          <textPath href="#sealArc" startOffset="50%" text-anchor="middle">观察笔记</textPath>
+        </text>
+        <text x="66" y="78" font-size="36" text-anchor="middle">閱</text>
+        <text x="66" y="99" font-size="9" letter-spacing="3" text-anchor="middle" font-family="Georgia, serif">2026</text>
+      </svg>
+    </button>
+    <p class="stamp-hint" aria-hidden="true">点一下试试 ↓</p>
+    <span class="seal-hit" id="sealHit" aria-hidden="true">已閱</span>
+
   </div>
 </section>
 
@@ -29,14 +57,22 @@ layout: default
     <div class="card-grid">
       {% for s in site.sections %}
       {% assign items = site.posts | where: "section", s.key %}
-      <a class="card" href="{{ s.url | relative_url }}" data-reveal style="--d: {{ forloop.index0 }}">
+      <a class="card" href="{{ s.url | relative_url }}" data-reveal
+         style="--tint: {{ s.tint }}; --d: {{ forloop.index0 }}">
+        <span class="card-blob" aria-hidden="true"></span>
+        <span class="card-sticker" aria-hidden="true">{{ s.sticker }}</span>
         <span class="card-no">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
         <h2 class="card-name">{{ s.name }}</h2>
         <p class="card-latin">{{ s.latin }}</p>
         <p class="card-desc">{{ s.desc }}</p>
         <p class="card-foot">
+          {% if items.size > 0 %}
           <span class="card-count">{{ items | size }} 篇</span>
-          {% if items.size > 0 %}<span class="card-latest">最新 · {{ items.first.title }}</span>{% endif %}
+          <span class="card-latest">最新 · {{ items.first.title }}</span>
+          {% else %}
+          <span class="card-count is-empty">空着</span>
+          <span class="card-latest">等你写第一篇</span>
+          {% endif %}
         </p>
         <span class="card-arrow" aria-hidden="true">→</span>
       </a>
@@ -63,7 +99,7 @@ layout: default
             <span class="entry-cat">{{ sec.name | default: "笔记" }}</span>
           </div>
           <div class="entry-main">
-            <h2 class="entry-title">{{ post.title }}</h2>
+            <h2 class="entry-title">{{ post.title }}</h2>{% if forloop.first %}<span class="tag-new">刚写</span>{% endif %}
             {% if post.description %}<p class="entry-desc">{{ post.description }}</p>{% endif %}
           </div>
           <span class="entry-arrow" aria-hidden="true">→</span>
@@ -74,7 +110,8 @@ layout: default
 
     <div class="colophon" data-reveal>
       <span class="colophon-label">题记</span>
-      <p class="colophon-text">{{ site.tagline }}。<span class="colophon-by">—— {{ site.author }}</span></p>
+      <p class="colophon-text">{{ site.tagline }}。<span class="colophon-by">—— {{ site.author }}</span>
+      </p>
     </div>
   </div>
 </section>

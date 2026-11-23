@@ -7,6 +7,8 @@ layout: default
 {% assign mins = chars | divided_by: 450 %}
 {% if mins < 1 %}{% assign mins = 1 %}{% endif %}
 
+<div class="progress" id="progress" aria-hidden="true"></div>
+
 <article class="post">
   <div class="shell post-grid">
 

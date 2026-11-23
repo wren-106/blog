@@ -27,7 +27,7 @@ layout: default
           <span class="entry-cat">{{ sec.name }}</span>
         </div>
         <div class="entry-main">
-          <h2 class="entry-title">{{ post.title }}</h2>
+          <h2 class="entry-title">{{ post.title }}</h2>{% if forloop.first %}<span class="tag-new">刚写</span>{% endif %}
           {% if post.description %}<p class="entry-desc">{{ post.description }}</p>{% endif %}
         </div>
         <span class="entry-arrow" aria-hidden="true">→</span>
@@ -37,9 +37,13 @@ layout: default
   </ol>
   {% else %}
   <div class="empty">
+    <span class="empty-stamp" aria-hidden="true">空</span>
     <span class="empty-mark" aria-hidden="true"></span>
     <p class="empty-title">这一类还没有文章。</p>
     <p class="empty-sub">{{ sec.empty }}</p>
+    {% if sec.seed %}
+    <p class="empty-seed">{{ sec.seed }}</p>
+    {% endif %}
     <a class="empty-link" href="{{ '/' | relative_url }}">先看看最近的笔记 →</a>
   </div>
   {% endif %}

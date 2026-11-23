@@ -11,18 +11,21 @@ url: "https://wren-106.github.io"
 baseurl: "/blog"
 
 # ===== 主题 =====
-# 版式已全部自定义（_layouts/ + assets/main.css），
+# 版式已全部自定义（_layouts/ + assets/site.css），
 # theme 留着只为兼容 GitHub Pages 的构建白名单。
 theme: minima
 
 # ===== 栏目 =====
 # 首页卡片、顶部导航、栏目页标题都读这一份，改这里即可
+# tint = 该栏目的点缀色；sticker = 卡片右上角那枚斜贴的方章
 sections:
   - key: news
     name: 新闻资讯
     short: 新闻
     latin: DISPATCH
     url: /news/
+    tint: "#8e3b2f"
+    sticker: 记
     desc: 正在发生的事，以及它背后的链条。不求快，只求把机制看清楚。
     empty: 新的动向会先记在这里。
   - key: reading
@@ -30,13 +33,18 @@ sections:
     short: 书籍
     latin: READING
     url: /reading/
+    tint: "#3d5c4a"
+    sticker: 读
     desc: 读完一本，留下能被复用的那几句。摘录都标了页码和版本。
-    empty: 读完的书会陆续记在这里。
+    empty: 这个抽屉还空着，先放一张便签。
+    seed: 想开张不必等读完一整本：挑一本手边正在翻的，摘三句划过的，写两百字为什么划它，就是一篇。
   - key: review
     name: 评论
     short: 评论
     latin: COMMENTARY
     url: /review/
+    tint: "#33456b"
+    sticker: 评
     desc: 对一件事的判断，连同判断的依据一起写下来。
     empty: 值得单独成篇的判断，还没有到。
   - key: essay
@@ -44,8 +52,11 @@ sections:
     short: 随笔
     latin: NOTES
     url: /essay/
+    tint: "#a8752a"
+    sticker: 碎
     desc: 还不成体系的想法，先记下来，日后再看。
     empty: 零散的想法正在散着，还没收拢。
+    seed: 这里适合放不成篇的东西：路上想到的一句话、一段没头没尾的观察、一张图配一行字。不用凑字数。
 
 # ===== 插件（都在 GitHub Pages 白名单内）=====
 plugins:

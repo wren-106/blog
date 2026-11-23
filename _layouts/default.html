@@ -13,8 +13,11 @@
   <header class="masthead" id="masthead">
     <div class="shell masthead-inner">
       <a class="brand" href="{{ '/' | relative_url }}">
-        <span class="brand-name">{{ site.title }}</span>
-        <span class="brand-sub">GUANCHA NOTES</span>
+        <span class="brand-seal" aria-hidden="true">觀</span>
+        <span class="brand-text">
+          <span class="brand-name">{{ site.title }}</span>
+          <span class="brand-sub">GUANCHA NOTES</span>
+        </span>
       </a>
       <nav class="nav" aria-label="栏目">
         {% for s in site.sections %}
@@ -29,7 +32,23 @@
     {{ content }}
   </main>
 
+  {% unless page.layout == 'post' %}
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      {% for i in (1..2) %}
+        {% for s in site.sections %}<span class="ticker-item">{{ s.name }} · {{ s.latin }}</span>{% endfor %}
+        <span class="ticker-item">{{ site.tagline }}</span>
+        <span class="ticker-item">{{ site.author }} · EST. 2026</span>
+      {% endfor %}
+    </div>
+  </div>
+  {% endunless %}
+
   {% include footer.html %}
+
+  <script type="application/json" id="post-index">[
+    {% for p in site.posts %}{"title":{{ p.title | jsonify }},"url":{{ p.url | relative_url | jsonify }}}{% unless forloop.last %},{% endunless %}{% endfor %}
+  ]</script>
   <script src="{{ '/assets/site.js' | relative_url }}" defer></script>
 </body>
 </html>
