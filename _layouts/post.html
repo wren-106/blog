@@ -4,7 +4,7 @@ layout: default
 
 {% assign sec = site.sections | where: "key", page.section | first %}
 {% assign chars = content | strip_html | strip | size %}
-{% assign mins = chars | divided_by: 450 %}
+{% assign mins = chars | divided_by: 450.0 | ceil %}
 {% if mins < 1 %}{% assign mins = 1 %}{% endif %}
 
 <div class="progress" id="progress" aria-hidden="true"></div>
