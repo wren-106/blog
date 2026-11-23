@@ -13,6 +13,7 @@
 Gemfile.lock
 Thumbs.db
 _docs/
+_preview/
 _push_tmp.py
 _site/
 deploy.bat

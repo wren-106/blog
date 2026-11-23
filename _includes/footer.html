@@ -1,8 +1,12 @@
-<footer class="site-footer h-card">
-  <data class="u-url" href="{{ '/' | relative_url }}"></data>
-  <div class="wrapper">
-    <p class="footer-line">
-      <span class="p-name">{{ site.author | escape }}</span><span class="footer-sep">·</span><span>{{ site.title | escape }}</span><span class="footer-sep">·</span><span>{{ site.time | date: "%Y" }}</span>
-    </p>
+<footer class="site-footer">
+  <div class="shell footer-inner">
+    <div class="footer-left">
+      <div class="footer-brand">{{ site.author }} · {{ site.title }}</div>
+      <p class="footer-quote">{{ site.tagline }}</p>
+    </div>
+    <div class="footer-right">
+      <div>EST. 2026 · {{ site.time | date: "%Y" }}</div>
+      <div><a href="{{ '/' | relative_url }}">回到目录</a></div>
+    </div>
   </div>
 </footer>

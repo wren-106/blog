@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% seo %}
+  <link rel="stylesheet" href="{{ '/assets/site.css' | relative_url }}">
+  <script>document.documentElement.className = 'js';</script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到正文</a>
+
+  <header class="masthead" id="masthead">
+    <div class="shell masthead-inner">
+      <a class="brand" href="{{ '/' | relative_url }}">
+        <span class="brand-name">{{ site.title }}</span>
+        <span class="brand-sub">GUANCHA NOTES</span>
+      </a>
+      <nav class="nav" aria-label="栏目">
+        {% for s in site.sections %}
+        <a class="nav-link{% if page.section == s.key %} is-active{% endif %}" href="{{ s.url | relative_url }}">{{ s.short }}</a>
+        {% endfor %}
+        <a class="nav-link{% if page.url == '/about/' %} is-active{% endif %}" href="{{ '/about/' | relative_url }}">关于</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    {{ content }}
+  </main>
+
+  {% include footer.html %}
+  <script src="{{ '/assets/site.js' | relative_url }}" defer></script>
+</body>
+</html>

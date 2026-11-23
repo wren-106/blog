@@ -1,0 +1,46 @@
+---
+layout: default
+---
+
+{% assign sec = site.sections | where: "key", page.section | first %}
+{% assign items = site.posts | where: "section", page.section %}
+
+<section class="sec-head">
+  <div class="shell">
+    <a class="back" href="{{ '/' | relative_url }}">← 目录</a>
+    <p class="kicker">{{ sec.latin }}</p>
+    <h1 class="sec-title">{{ sec.name | default: page.title }}</h1>
+    <p class="sec-desc">{{ sec.desc }}</p>
+    <p class="sec-meta">{{ items | size }} 篇 · 按时间倒序</p>
+    <span class="sec-num" aria-hidden="true">{{ page.index_no }}</span>
+  </div>
+</section>
+
+<div class="shell sec-body">
+  {% if items.size > 0 %}
+  <ol class="entries">
+    {% for post in items %}
+    <li class="entry" data-reveal>
+      <a class="entry-link" href="{{ post.url | relative_url }}">
+        <div class="entry-side">
+          <span class="entry-date">{{ post.date | date: "%Y.%m.%d" }}</span>
+          <span class="entry-cat">{{ sec.name }}</span>
+        </div>
+        <div class="entry-main">
+          <h2 class="entry-title">{{ post.title }}</h2>
+          {% if post.description %}<p class="entry-desc">{{ post.description }}</p>{% endif %}
+        </div>
+        <span class="entry-arrow" aria-hidden="true">→</span>
+      </a>
+    </li>
+    {% endfor %}
+  </ol>
+  {% else %}
+  <div class="empty">
+    <span class="empty-mark" aria-hidden="true"></span>
+    <p class="empty-title">这一类还没有文章。</p>
+    <p class="empty-sub">{{ sec.empty }}</p>
+    <a class="empty-link" href="{{ '/' | relative_url }}">先看看最近的笔记 →</a>
+  </div>
+  {% endif %}
+</div>

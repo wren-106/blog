@@ -2,6 +2,7 @@
 title: 观察笔记
 description: 一份关于信息、机制与钱的观察笔记
 author: 润一
+tagline: 说得清楚比说得多重要
 
 # ===== 关键：子仓库必须配 baseurl =====
 # 仓库名是 blog，所以 baseurl 设为 /blog
@@ -10,11 +11,41 @@ url: "https://wren-106.github.io"
 baseurl: "/blog"
 
 # ===== 主题 =====
+# 版式已全部自定义（_layouts/ + assets/main.css），
+# theme 留着只为兼容 GitHub Pages 的构建白名单。
 theme: minima
 
-# 主题细节
-minima:
-  date_format: "%Y 年 %m 月 %d 日"
+# ===== 栏目 =====
+# 首页卡片、顶部导航、栏目页标题都读这一份，改这里即可
+sections:
+  - key: news
+    name: 新闻资讯
+    short: 新闻
+    latin: DISPATCH
+    url: /news/
+    desc: 正在发生的事，以及它背后的链条。不求快，只求把机制看清楚。
+    empty: 新的动向会先记在这里。
+  - key: reading
+    name: 书籍阅读有感
+    short: 书籍
+    latin: READING
+    url: /reading/
+    desc: 读完一本，留下能被复用的那几句。摘录都标了页码和版本。
+    empty: 读完的书会陆续记在这里。
+  - key: review
+    name: 评论
+    short: 评论
+    latin: COMMENTARY
+    url: /review/
+    desc: 对一件事的判断，连同判断的依据一起写下来。
+    empty: 值得单独成篇的判断，还没有到。
+  - key: essay
+    name: 随笔
+    short: 随笔
+    latin: NOTES
+    url: /essay/
+    desc: 还不成体系的想法，先记下来，日后再看。
+    empty: 零散的想法正在散着，还没收拢。
 
 # ===== 插件（都在 GitHub Pages 白名单内）=====
 plugins:
@@ -25,16 +56,11 @@ plugins:
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
 
-# 文章首页显示摘要
-show_excerpts: true
-
 # 时区
 timezone: Asia/Shanghai
 
 # ===== 排除不参与构建的文件 =====
-# 注意：assets/ 下的 .md 会被 GitHub Pages 当成页面渲染，
-# 还会出现在顶部导航里（minima 会列出所有 page），所以一并排除
 exclude:
   - README.md
   - .gitignore
-  - "assets/images/posts/info-gap/README.md"
+  - assets/images/posts/info-gap/README.md

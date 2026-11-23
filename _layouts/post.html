@@ -1,0 +1,49 @@
+---
+layout: default
+---
+
+{% assign sec = site.sections | where: "key", page.section | first %}
+{% assign chars = content | strip_html | strip | size %}
+{% assign mins = chars | divided_by: 450 %}
+{% if mins < 1 %}{% assign mins = 1 %}{% endif %}
+
+<article class="post">
+  <div class="shell post-grid">
+
+    <aside class="post-aside">
+      <a class="post-cat" href="{{ sec.url | default: '/' | relative_url }}">{{ sec.name | default: "笔记" }}</a>
+      <time class="post-date" datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%Y.%m.%d" }}</time>
+      <span class="post-rule" aria-hidden="true"></span>
+      <span class="post-len">约 {{ mins }} 分钟</span>
+    </aside>
+
+    <div class="post-main">
+      <h1 class="post-title">{{ page.title }}</h1>
+      {% if page.description %}
+      <p class="post-sub">{{ page.description }}</p>
+      {% endif %}
+
+      <div class="post-body">
+        {{ content }}
+      </div>
+
+      {% if page.previous or page.next %}
+      <nav class="post-nav" aria-label="上下篇">
+        {% if page.previous %}
+        <a class="pn" href="{{ page.previous.url | relative_url }}">
+          <span class="pn-label">上一篇</span>
+          <span class="pn-title">{{ page.previous.title }}</span>
+        </a>
+        {% endif %}
+        {% if page.next %}
+        <a class="pn pn-right" href="{{ page.next.url | relative_url }}">
+          <span class="pn-label">下一篇</span>
+          <span class="pn-title">{{ page.next.title }}</span>
+        </a>
+        {% endif %}
+      </nav>
+      {% endif %}
+    </div>
+
+  </div>
+</article>
