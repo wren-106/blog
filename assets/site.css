@@ -1169,6 +1169,7 @@ h1, h2, h3, h4 { font-weight: 400; }
 }
 
 .spark-quote {
+  position: relative;
   margin: 1.05rem 0 0;
   min-height: calc(3 * 1.62em);
   font-family: var(--brush);
@@ -1185,13 +1186,15 @@ h1, h2, h3, h4 { font-weight: 400; }
   box-decoration-break: clone;
 }
 
+/* 引号挂在句子左外侧，不占行高，免得三张卡高低不一 */
 .spark-quote::before {
   content: "“";
-  margin-right: .06em;
-  font-size: 1.5em;
-  line-height: 0;
-  vertical-align: -.18em;
-  color: rgba(142, 59, 47, .28);
+  position: absolute;
+  left: -.62em;
+  top: -.12em;
+  font-size: 1.6em;
+  line-height: 1;
+  color: rgba(142, 59, 47, .26);
 }
 
 .spark-quote:hover,
