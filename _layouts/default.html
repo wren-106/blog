@@ -23,6 +23,7 @@
         <span class="nav-ink" id="navInk" aria-hidden="true"></span>
         {% for s in site.sections %}
         {% assign navitems = site.posts | where: "section", s.key %}
+        {% if s.data %}{% assign navitems = site.data[s.data] %}{% endif %}
         <a class="nav-link{% if page.section == s.key %} is-active{% endif %}" href="{{ s.url | relative_url }}" style="--tint: {{ s.tint }}"><span class="nav-dot" aria-hidden="true"></span>{{ s.short }}<span class="nav-count" aria-hidden="true">{{ navitems | size }}</span></a>
         {% endfor %}
         <a class="nav-link{% if page.url == '/about/' %} is-active{% endif %}" href="{{ '/about/' | relative_url }}"><span class="nav-dot" aria-hidden="true"></span>关于</a>

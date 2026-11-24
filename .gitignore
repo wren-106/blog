@@ -23,3 +23,5 @@ push.bat
 reset-token.bat
 tmp_*.py
 vendor/
+
+_src/

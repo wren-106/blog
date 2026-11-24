@@ -1,0 +1,122 @@
+---
+layout: default
+title: 灵感源
+permalink: /spark/
+section: spark
+index_no: "04"
+---
+
+{% assign sparks = site.data.sparks | where: "kind", "spark" %}
+{% assign books = site.data.sparks | where: "kind", "book" %}
+
+<section class="sec-head spark-head" style="--tint: #a8752a">
+  <div class="shell">
+    <a class="back" href="{{ '/' | relative_url }}">← 目录</a>
+    <p class="kicker">SPARKS &amp; MARGINALIA</p>
+    <h1 class="sec-title spark-big">灵感源</h1>
+    <svg class="scrawl" viewBox="0 0 300 24" aria-hidden="true" preserveAspectRatio="none">
+      <path d="M3 15c38-9 72-11 108-7 34 4 62 9 96 5 31-4 56-8 90-3" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M22 21c30-5 58-6 86-4 26 2 50 4 76 2" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" opacity=".55"/>
+    </svg>
+    <p class="sec-desc">金句、新闻案例、书里划过的句子。写不成篇的先钉在这里，等它自己长出骨头。</p>
+    <p class="sec-meta">{{ sparks | size }} 则灵感 · {{ books | size }} 本旧书 · 点开看全文</p>
+    <span class="sec-num" aria-hidden="true">04</span>
+  </div>
+</section>
+
+<div class="shell spark-body">
+
+  <div class="spark-bar">
+    <span class="label">其一 · 灵感</span>
+    <span class="rule"></span>
+    <span class="label-quiet">金句 / 案例 / 观察</span>
+    <button class="spark-draw" id="drawBtn" type="button" aria-label="随机抽一条灵感">
+      <span class="draw-label">抽一条</span>
+      <span class="draw-glyph" aria-hidden="true">✦</span>
+    </button>
+  </div>
+
+  <ol class="spark-grid">
+    {% for item in sparks %}
+    <li class="spark-card" data-reveal style="--d: {{ forloop.index0 }}">
+      <span class="spark-tag">{{ item.tag }}</span>
+      <span class="spark-no" aria-hidden="true">{{ forloop.index | prepend: '0' | slice: -2, 2 }}</span>
+      <span class="spark-mark" aria-hidden="true">“</span>
+
+      <blockquote class="spark-quote" data-copy="{{ item.quote | escape }}" tabindex="0"
+                  role="button" aria-label="复制这句话">{{ item.quote }}</blockquote>
+
+      <h2 class="spark-name">{{ item.title }}</h2>
+      <p class="spark-src">{{ item.source }}</p>
+
+      <div class="spark-extra">
+        <div class="spark-extra-in">
+          {{ item.body | markdownify }}
+          <p class="spark-take">{{ item.take }}</p>
+        </div>
+      </div>
+
+      <button class="spark-toggle" type="button" aria-expanded="false">
+        <span class="toggle-word">展开</span>
+        <span class="toggle-caret" aria-hidden="true">↓</span>
+      </button>
+    </li>
+    {% endfor %}
+  </ol>
+
+  <div class="spark-bar">
+    <span class="label">其二 · 书摘</span>
+    <span class="rule"></span>
+    <span class="label-quiet">书里划了线的那几句</span>
+  </div>
+
+  <ol class="book-grid">
+    {% for item in books %}
+    <li class="book-card" data-reveal style="--d: {{ forloop.index0 }}">
+      <div class="book-cover">
+        <p class="book-kicker">{{ item.kicker }}</p>
+        <h2 class="book-title">{{ item.title }}</h2>
+        <p class="book-author">{{ item.source }}</p>
+        <span class="book-seal" aria-hidden="true">藏</span>
+        <span class="book-edge" aria-hidden="true"></span>
+      </div>
+
+      <div class="book-extra">
+        <div class="book-extra-in">
+          <p class="book-quote">{{ item.quote }}</p>
+          {% if item.quips %}
+          <ul class="book-quips">
+            {% for q in item.quips %}<li>{{ q }}</li>{% endfor %}
+          </ul>
+          {% endif %}
+          {{ item.body | markdownify }}
+          <p class="spark-take">{{ item.take }}</p>
+        </div>
+      </div>
+
+      <button class="book-toggle" type="button" aria-expanded="false">
+        <span class="toggle-word">翻开</span>
+        <span class="toggle-caret" aria-hidden="true">↓</span>
+      </button>
+    </li>
+    {% endfor %}
+
+    <li class="book-card is-vacant" data-reveal>
+      <div class="book-cover">
+        <p class="book-kicker">第三本</p>
+        <h2 class="book-title">留白</h2>
+        <p class="book-author">等你点名</p>
+        <span class="book-seal" aria-hidden="true">待</span>
+        <span class="book-edge" aria-hidden="true"></span>
+      </div>
+      <p class="vacant-note">这一格空着。想让我读哪本，把书名丢过来，读完就钉上去。</p>
+    </li>
+  </ol>
+
+  <div class="spark-foot">
+    <span class="spark-foot-mark" aria-hidden="true">※</span>
+    <p>灵感不是收藏。收进来只为了两件事：改写成一篇，或者在某天证明自己想错了。</p>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>

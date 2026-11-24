@@ -47,16 +47,18 @@ sections:
     sticker: 评
     desc: 对一件事的判断，连同判断的依据一起写下来。
     empty: 值得单独成篇的判断，还没有到。
-  - key: essay
-    name: 随笔
-    short: 随笔
-    latin: NOTES
-    url: /essay/
+  - key: spark
+    name: 灵感源
+    short: 灵感
+    latin: SPARKS
+    url: /spark/
     tint: "#a8752a"
-    sticker: 碎
-    desc: 还不成体系的想法，先记下来，日后再看。
-    empty: 零散的想法正在散着，还没收拢。
-    seed: 这里适合放不成篇的东西：路上想到的一句话、一段没头没尾的观察、一张图配一行字。不用凑字数。
+    sticker: 灵
+    data: sparks
+    unit: 条
+    desc: 金句、新闻案例、书里的句子。成篇的写进别的栏，没成篇的先钉在这里。
+    empty: 灵感还没落下来。
+    seed: 一句听过就忘不掉的话、一条能拆出机制的新闻、书里划了线的那行字，都可以钉在这里。不解释也行，先存着。
 
 # ===== 插件（都在 GitHub Pages 白名单内）=====
 plugins:

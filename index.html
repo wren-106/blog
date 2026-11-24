@@ -7,7 +7,7 @@ layout: default
     <div class="hero-copy" data-reveal>
       <p class="kicker">Personal Notes · Est. 2026</p>
       <h1 class="hero-title">{{ site.title }}</h1>
-      <p class="hero-lead">{{ site.description }}。这里分四类存放：正在发生的事、读过的书、想清楚的判断，以及还没想清楚的问题。</p>
+      <p class="hero-lead">{{ site.description }}。这里分四类存放：正在发生的事、读过的书、想清楚的判断，以及还没成篇的灵感。</p>
       <p class="hero-note"><span class="hl">写得慢一点，想得清楚一点。</span></p>
       <div class="hero-meta">
         <span>{{ site.posts | size }} 篇</span><span class="dot"></span>
@@ -57,6 +57,7 @@ layout: default
     <div class="card-grid">
       {% for s in site.sections %}
       {% assign items = site.posts | where: "section", s.key %}
+      {% if s.data %}{% assign items = site.data[s.data] %}{% endif %}
       <a class="card" href="{{ s.url | relative_url }}" data-reveal
          style="--tint: {{ s.tint }}; --d: {{ forloop.index0 }}">
         <span class="card-blob" aria-hidden="true"></span>
@@ -66,8 +67,10 @@ layout: default
         <p class="card-latin">{{ s.latin }}</p>
         <p class="card-foot">
           {% if items.size > 0 %}
-          <span class="card-count">{{ items | size }} 篇</span>
-          <span class="card-latest">{{ items.first.title }}</span>
+          <span class="card-count">{{ items | size }} {{ s.unit | default: "篇" }}</span>
+          <span class="card-latest">
+            {% if s.data %}随手可翻{% else %}{{ items.first.title }}{% endif %}
+          </span>
           {% else %}
           <span class="card-count is-empty">空着</span>
           <span class="card-latest">等你写第一篇</span>
